@@ -1,1 +1,4 @@
-print("Driver-ALGORITHM")
+import confLoader
+
+
+print(confLoader.confLoader("config/conf.json"))
