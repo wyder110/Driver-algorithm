@@ -5,7 +5,7 @@ def confLoader(path):
     cities = {}
     packages = {}
     parameters = {}
-    with open(path) as json_file:
+    with open(path, encoding="UTF-8") as json_file:
         data = json.load(json_file)
         parameters = data["parameters"]
 
