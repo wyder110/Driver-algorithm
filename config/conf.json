@@ -1,0 +1,26 @@
+{
+    "cities": [
+        {"name": "Kraków",
+        "connections": [
+            {"name":"Łódź", "weigth":100},
+            {"name":"Poznań", "weigth":100}
+        ]},
+        {"name": "Łódź",
+        "connections": [
+            {"name":"Poznań", "weigth":120},
+            {"name":"Kraków", "weigth":100}
+        ]},
+        {"name": "Poznań",
+        "connections": [
+            {"name":"Łódź", "weigth":120},
+            {"name":"Kraków", "weigth":100}
+        ]}
+    ],
+    "packages": [
+        {"from": "Kraków", "to": "Łódź", "weigth": 100, "price": 100},
+        {"from": "Łódź", "to": "Poznań", "weigth": 100, "price": 100}
+    ],
+    "start": "Kraków",
+    "maxLength": 1000,
+    "maxCarry": 300
+}
