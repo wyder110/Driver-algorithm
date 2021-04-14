@@ -1,4 +1,4 @@
 import confLoader
 
 
-print(confLoader.confLoader("config/conf.json"))
+print(confLoader.confLoader("config/conf3.json"))

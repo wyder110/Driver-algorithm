@@ -1,0 +1,79 @@
+{
+    "cities": [
+        {"name": "Kraków",
+        "connections": [
+            {"name":"Łódź", "length":280},
+            {"name":"Warszawa", "length":294},
+            {"name":"Wrocław", "length":272},
+            {"name":"Szczecin", "length":654}
+        ]},
+        {"name": "Łódź",
+        "connections": [
+            {"name":"Kraków", "length":280},
+            {"name":"Warszawa", "length":138},
+            {"name":"Wrocław", "length":215},
+            {"name":"Toruń", "length":165}
+        ]},
+        {"name": "Poznań",
+        "connections": [
+            {"name":"Kraków", "length":428},
+            {"name":"Wrocław", "length":182},
+            {"name":"Toruń", "length":172},
+            {"name":"Gdańsk", "length":320}
+        ]},
+        {"name": "Warszawa",
+        "connections": [
+            {"name":"Łódź", "length":138},
+            {"name":"Poznań", "length":314},
+            {"name":"Wrocław", "length":348},
+            {"name":"Toruń", "length":259},
+            {"name":"Szczecin", "length":567}
+        ]},
+        {"name": "Wrocław",
+        "connections": [
+            {"name":"Łódź", "length":215},
+            {"name":"Poznań", "length":182},
+            {"name":"Warszawa", "length":348},
+            {"name":"Toruń", "length":333},
+            {"name":"Szczecin", "length":374}
+        ]},
+        {"name": "Toruń",
+        "connections": [
+            {"name":"Kraków", "length":413},
+            {"name":"Warszawa", "length":259},
+            {"name":"Wrocław", "length":333},
+            {"name":"Gdańsk", "length":168}
+        ]},
+        {"name": "Gdańsk",
+        "connections": [
+            {"name":"Kraków", "length":598},
+            {"name":"Poznań", "length":320},
+            {"name":"Wrocław", "length":553},
+            {"name":"Toruń", "length":168},
+            {"name":"Szczecin", "length":359}
+        ]},
+        {"name": "Szczecin",
+        "connections": [
+            {"name":"Kraków", "length":654},
+            {"name":"Wrocław", "length":374},
+            {"name":"Toruń", "length":316}
+        ]}
+    ],
+    "packages": [
+        {"from": "Łódź", "to": "Poznań", "weigth": 100, "price": 100},
+        {"from": "Warszawa", "to": "Wrocław", "weigth": 100, "price": 100},
+        {"from": "Wrocław", "to": "Toruń", "weigth": 100, "price": 100},
+        {"from": "Toruń", "to": "Gdańsk", "weigth": 100, "price": 100},
+        {"from": "Gdańsk", "to": "Szczecin", "weigth": 100, "price": 100},
+        {"from": "Łódź", "to": "Kraków", "weigth": 100, "price": 100},
+        {"from": "Poznań", "to": "Łódź", "weigth": 100, "price": 100},
+        {"from": "Toruń", "to": "Wrocław", "weigth": 100, "price": 100},
+        {"from": "Gdańsk", "to": "Toruń", "weigth": 100, "price": 100},
+        {"from": "Kraków", "to": "Szczecin", "weigth": 100, "price": 100}
+    ],
+    "parameters":{
+        "start": "Kraków",
+        "maxSteps": 10,
+        "maxCarry": 300
+    }
+}

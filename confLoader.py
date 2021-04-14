@@ -2,6 +2,7 @@ import json
 
 
 def confLoader(path):
+    
     cities = {}
     packages = {}
     parameters = {}
