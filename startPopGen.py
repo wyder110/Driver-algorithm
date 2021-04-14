@@ -19,11 +19,12 @@ def generateTrace(cities, packages, parameters, startCity, maxSteps, maxCarry):
     taken = set()
 
     trace = []
-    for i in range(maxSteps):
+    for _ in range(maxSteps):
+        
         deliverPackages(trailer, currentCity)
-
-        freePackages = [x for x in list(packages.get(currentCity)) if x["id"] not in taken]
-        choosePackages(trailer, freePackages, maxCarry)
+        if currentCity in packages:
+            freePackages = [x for x in list(packages.get(currentCity)) if x["id"] not in taken]
+            choosePackages(trailer, freePackages, maxCarry)
 
         adjacentCities = list(cities.get(currentCity).keys())
         nextCity = chooseNeighbour(adjacentCities)

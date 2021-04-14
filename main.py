@@ -2,8 +2,11 @@ import confLoader
 from startPopGen import generateFirstPopulation
 from objectiveFunction import objectiveFunction
 
-cities, packages, parameters = confLoader.confLoader("config/conf3.json")
+cities, packages, parameters = confLoader.confLoader("config/conf2.json")
+
+
 pop = generateFirstPopulation(cities, packages, parameters, 10)
+
 
 
 for t in pop:
@@ -13,6 +16,4 @@ for t in pop:
     profit = objectiveFunction(cities, packages, t)
     print("profit:", profit)
     print()
-
-
 
