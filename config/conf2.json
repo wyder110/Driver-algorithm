@@ -60,16 +60,16 @@
         ]}
     ],
     "packages": [
-        {"from": "Łódź", "to": "Poznań", "weigth": 100, "price": 100},
-        {"from": "Warszawa", "to": "Wrocław", "weigth": 100, "price": 100},
-        {"from": "Wrocław", "to": "Toruń", "weigth": 100, "price": 100},
-        {"from": "Toruń", "to": "Gdańsk", "weigth": 100, "price": 100},
-        {"from": "Gdańsk", "to": "Szczecin", "weigth": 100, "price": 100},
-        {"from": "Łódź", "to": "Kraków", "weigth": 100, "price": 100},
-        {"from": "Poznań", "to": "Łódź", "weigth": 100, "price": 100},
-        {"from": "Toruń", "to": "Wrocław", "weigth": 100, "price": 100},
-        {"from": "Gdańsk", "to": "Toruń", "weigth": 100, "price": 100},
-        {"from": "Kraków", "to": "Szczecin", "weigth": 100, "price": 100}
+        {"id": 1,"from": "Łódź", "to":"Poznań","weigth": 276, "price": 1631},
+        {"id": 2,"from": "Łódź", "to":"Kraków","weigth": 242, "price": 1736},
+        {"id": 3,"from": "Warszawa", "to":"Wrocław","weigth": 336, "price": 2359},
+        {"id": 4,"from": "Wrocław", "to":"Toruń","weigth": 311, "price": 2391},
+        {"id": 5,"from": "Toruń", "to":"Gdańsk","weigth": 214, "price": 1053},
+        {"id": 6,"from": "Toruń", "to":"Wrocław","weigth": 189, "price": 1792},
+        {"id": 7,"from": "Gdańsk", "to":"Szczecin","weigth": 167, "price": 2012},
+        {"id": 8,"from": "Gdańsk", "to":"Toruń","weigth": 267, "price": 1800},
+        {"id": 9,"from": "Poznań", "to":"Łódź","weigth": 323, "price": 2556},
+        {"id": 10,"from": "Kraków", "to":"Szczecin","weigth": 164, "price": 2725}
     ],
     "parameters":{
         "start": "Kraków",
