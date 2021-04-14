@@ -1,33 +1,40 @@
 import random
 
 
-def generateFirstPopulation(cities, packages, parameters):
+def generateFirstPopulation(cities, packages, parameters, count):
     startCity = parameters.get("start")
     maxSteps = parameters.get("maxSteps")
     maxCarry = parameters.get("maxCarry")
 
+    result = []
+    for _ in range(count):
+        result.append(generateTrace(cities, packages, parameters, startCity, maxSteps, maxCarry))
     
+    return result
+
+
+def generateTrace(cities, packages, parameters, startCity, maxSteps, maxCarry):
     currentCity = startCity
     trailer = []
+    taken = set()
 
     trace = []
     for i in range(maxSteps):
-        # oddaj paczki chamie
         deliverPackages(trailer, currentCity)
-        # wybierz paczke/i
-        packagesInCurrentCity = list(packages.get(currentCity))
-        choosePackages(trailer, packagesInCurrentCity, maxCarry)
-        # wybierz sasiada
+
+        freePackages = [x for x in list(packages.get(currentCity)) if x["id"] not in taken]
+        choosePackages(trailer, freePackages, maxCarry)
+
         adjacentCities = list(cities.get(currentCity).keys())
         nextCity = chooseNeighbour(adjacentCities)
-        # dodaj wpis w trasie
-        packagesNumber = [x["id"] for x in trailer]
-        trace.append((currentCity, nextCity, packagesNumber))
-        # zmien obecne miasto
-        currentCity = nextCity
-    for t in trace:
-        print(t)
 
+        packagesNumber = [x["id"] for x in trailer]
+        taken.update(packagesNumber)
+        trace.append((currentCity, nextCity, packagesNumber))
+
+        currentCity = nextCity
+    
+    return trace
 
 def deliverPackages(trailer, currentCity):
     for package in trailer:
