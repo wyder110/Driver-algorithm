@@ -1,7 +1,12 @@
 import json
 
-# class Configuration:
-#     public 
+class Configuration:
+    cities = {}
+    packages = {}
+    packagesId = {}
+    parameters = {}
+
+
 
 def confLoader(path):
     
@@ -24,9 +29,18 @@ def confLoader(path):
                 packages[package["from"]].append(package)
             else:
                 packages[package["from"]] = [package]
-            
+    
+    packagesId = dict()
+    for city in packages.items():
+        for pac in city[1]:
+            packagesId[pac["id"]] = pac
 
+    Configuration.cities = cities
+    Configuration.packages = packages
+    Configuration.packagesId = packagesId
+    Configuration.parameters = parameters
 
+    
     # print(cities)
     # print(packages)
     # print(packages)
