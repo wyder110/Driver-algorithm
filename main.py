@@ -1,7 +1,7 @@
 import confLoader
 from startPopGen import generateFirstPopulation
 from objectiveFunction import objectiveFunction
-import crossoverMutation
+import crossover
 
 cities, packages, parameters = confLoader.confLoader("config/conf3.json")
 
@@ -15,14 +15,15 @@ for city in packages.items():
     for pac in city[1]:
         packagesId[pac["id"]] = pac
 
-# cross = crossoverMutation.crossover(cities, packagesId, parameters, pop[0], pop[1])
+# cross = crossover.crossover(cities, packagesId, parameters, pop[0], pop[1])
 
-for _ in range(1):
+# ranking selection :O
+for _ in range(100):
     pop.sort(key = sortingFun, reverse=True)
     pop = pop[:20]
     for i in range(len(pop)):
         for j in range(i):
-            cross = crossoverMutation.crossover(cities, packagesId, parameters, pop[i], pop[j])
+            cross = crossover.crossover(cities, packagesId, parameters, pop[i], pop[j])
             pop.append(cross)
             # pop.append(generateFirstPopulation(cities, packages, parameters, 1)[0])
 
