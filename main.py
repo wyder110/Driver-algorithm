@@ -17,7 +17,7 @@ for city in packages.items():
 
 # cross = crossoverMutation.crossover(cities, packagesId, parameters, pop[0], pop[1])
 
-for _ in range(100):
+for _ in range(1):
     pop.sort(key = sortingFun, reverse=True)
     pop = pop[:20]
     for i in range(len(pop)):

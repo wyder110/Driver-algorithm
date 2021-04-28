@@ -1,5 +1,7 @@
 import json
 
+# class Configuration:
+#     public 
 
 def confLoader(path):
     
