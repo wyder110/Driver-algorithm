@@ -20,10 +20,10 @@ for _ in range(10):
             trace_copy = copy(pop[i])
             replacement(trace_copy)
             pop.append(trace_copy)
-            # for j in range(i):
-            #     cross = crossover.crossover(cities, pop[i], pop[j])
-            #     pop.append(cross)
-            #     pop.append(generateFirstPopulation(cities, packages, parameters, 1)[0])
+            for j in range(i):
+                cross = crossover.crossover(cities, pop[i], pop[j])
+                pop.append(cross)
+                pop.append(generateFirstPopulation(cities, packages, parameters, 1)[0])
 
     pop.sort(key=sortingFun, reverse=True)
     current_cash = sortingFun(pop[0])
