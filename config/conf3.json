@@ -104,7 +104,7 @@
     ],
     "parameters":{
         "start": "Kraków",
-        "maxSteps": 10,
+        "maxSteps": 20,
         "maxCarry": 1500
     }
 }
