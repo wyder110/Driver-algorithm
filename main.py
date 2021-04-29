@@ -5,18 +5,17 @@ import crossover
 from mutation import *
 from copy import copy
 from objectiveFunction import *
+from selection import *
 
-cities, packages, parameters = confLoader.confLoader("config/conf.json")
-sortingFun = lambda trace : objectiveFunction(cities, packages, trace)
+cities, packages, parameters = confLoader.confLoader("config/conf3.json")
 
-# # ranking selection :O
+
 best_pop = []
 max_cash = 0
-for _ in range(50):
+for _ in range(10):
     pop = generateFirstPopulation(cities, packages, parameters, 100)
     for _ in range(100):
-        pop.sort(key = sortingFun, reverse=True)
-        pop = pop[:20]
+        pop = ranking_selection(pop, 20)
         for i in range(len(pop)):
             trace_copy = copy(pop[i])
             replacement(trace_copy)
@@ -26,7 +25,7 @@ for _ in range(50):
             #     pop.append(cross)
             #     pop.append(generateFirstPopulation(cities, packages, parameters, 1)[0])
 
-    pop.sort(key = sortingFun, reverse=True)
+    pop.sort(key=sortingFun, reverse=True)
     current_cash = sortingFun(pop[0])
     print(sortingFun(pop[0]))
     if current_cash > max_cash:
