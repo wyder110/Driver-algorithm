@@ -19,8 +19,12 @@ def deletion(trace: list, index):
     if index < len(trace) - 1:  # delete from middle of trace
         previuos_step = trace[index-1]
         currrent_step = trace[index]
+        # print(index, " TO DELETE ", currrent_step)
         next_step = trace[index+1]  # (from, to, packages)
         # paczki ogarnąć?
+        # print(index, " DELETED: ", trace.remove(currrent_step))
+        trace[index-1] = (previuos_step[0], next_step[0], previuos_step[2])
+
         packages_taken_from_current_city = list(set(currrent_step[2]) - set(previuos_step[2]))
         packages_delivered_to_current_city = list(set(previuos_step[2]) - set(currrent_step[2]))
 
@@ -36,8 +40,7 @@ def deletion(trace: list, index):
             trace[i] = (step[0], step[1], packages)
             
         # remove city to delete and connect its neighbours
-        trace[index-1] = (previuos_step[0], next_step[0], previuos_step[2])
-        trace.remove(currrent_step)
+        del trace[index]
         # change future xD
         for i in range(index, len(trace)):
             next_and_previous = [x for x in trace[i][2] if x in trace[i-1][2]]
@@ -53,6 +56,7 @@ def deletion(trace: list, index):
             trace[i] = (trace[i][0], trace[i][1], packages)
         
     else:  # delete from the end of trace
+        # print(index, " DELETED FROM END: ", trace.pop())
         trace.pop()
 
 
@@ -109,6 +113,8 @@ def insertion(trace, index):
         # change next city in previous step
         trace[index-1] = (trace[index-1][0], chosen_neighbour, trace[index-1][2])
         # insert new step in trace
+        new_step = (chosen_neighbour, trace[index][0], packages+taken)
+        # print(index, " INSERTED: ", new_step)
         trace.insert(index, (chosen_neighbour, trace[index][0], packages+taken))
         # remove delivered packages from next cities
         for i in range(index+1, len(trace)):
@@ -148,7 +154,9 @@ def insertion(trace, index):
         # choose neighbour for new city
         new_neighbour = random.choice(list(Configuration.cities.get(chosen_neighbour)))
         # insert new step in trace
-        trace.insert(index, (chosen_neighbour, new_neighbour, packages))
+        new_step = (chosen_neighbour, new_neighbour, packages)
+        # print(index, " INSERTED AT END: ", new_step)
+        trace.insert(index, new_step)
 
 
 def check_and_insert(trace, index):
@@ -160,7 +168,7 @@ def check_and_insert(trace, index):
 
 def insert(trace, index=None):
     if index is None:
-        index = random.randint(1, len(trace)-1)
+        index = random.randint(1, len(trace))
     return check_and_insert(trace, index)
 
 def delete(trace, index=None):
