@@ -1,6 +1,7 @@
 import random
 from copy import copy
 from confLoader import Configuration as Configuration
+# import confLoader
 
 def copyFirstPart(listFrom, cross, crossingPlace, takenPackeges):
     '''kopiuje pierwszą część treca'''

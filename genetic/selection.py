@@ -1,4 +1,4 @@
-from objectiveFunction import *
+from genetic.objectiveFunction import *
 from confLoader import Configuration
 import random
 

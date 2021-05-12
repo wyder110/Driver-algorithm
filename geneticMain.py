@@ -1,11 +1,11 @@
 import confLoader
-from startPopGen import generateFirstPopulation
-from objectiveFunction import objectiveFunction
-import crossover
-from mutation import *
+from genetic.startPopGen import generateFirstPopulation
+from genetic.objectiveFunction import objectiveFunction
+import genetic.crossover as crossover
+import genetic.mutation as mutation
 from copy import copy
-from objectiveFunction import *
-from selection import *
+from genetic.objectiveFunction import *
+from genetic.selection import *
 
 cities, packages, parameters = confLoader.confLoader("config/conf3.json")
 
@@ -18,7 +18,7 @@ for _ in range(10):
         pop = ranking_selection(pop, 20)
         for i in range(len(pop)):
             trace_copy = copy(pop[i])
-            replacement(trace_copy)
+            mutation.replacement(trace_copy)
             pop.append(trace_copy)
             for j in range(i):
                 cross = crossover.crossover(cities, pop[i], pop[j])
