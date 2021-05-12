@@ -1,38 +1,35 @@
-from confLoader import *
 import ants.pheromones as pheromones
 from ants.ants import *
-from copy import deepcopy
-from ants.objectiveFunction import *
-from genetic.crossover import chceckIfTraceIsCorrect
+from ants.pheromones import printPheromones
+from common.objectiveFunction import *
+from confLoader import *
 
-# confLoader.Configuration.parameters
 cities, packages, parameters = confLoader("config/conf3.json")
 startingCity = Configuration.parameters["start"]
-
 
 pheromoneMap = pheromones.createPheromonesMap(cities)
 ants = []
 
-alpha = 1
+alpha = 0.8
 beta = 0
-ro = 0.5
+ro = 0.01
 
-starting_population = 1
-iterations = 1000
+starting_population = 1000
+iterations = 100
 
 for _ in range(starting_population):
-    ants.append([(startingCity, nextStep(pheromoneMap, startingCity, alpha), [])])
-    ants[-1][0] = (startingCity, nextStep(pheromoneMap, startingCity, alpha), takeLeavePackages(ants[-1]))
+    ants.append([(startingCity, nextStep(pheromoneMap, startingCity, alpha), takeLeavePackages([],[],startingCity))])
 
 for _ in range(iterations):
-    ants.append([(startingCity, nextStep(pheromoneMap, startingCity, alpha), [])])
-    ants[-1][0] = (startingCity, nextStep(pheromoneMap, startingCity, alpha), takeLeavePackages(ants[-1]))
+    ants.append([(startingCity, nextStep(pheromoneMap, startingCity, alpha), takeLeavePackages([],[],startingCity))])
+
+    printPheromones(pheromoneMap)
 
     for ant in ants:
         if len(ant) < Configuration.parameters["maxSteps"]:
             cityFrom = ant[-1][1]
             nextCity = nextStep(pheromoneMap, cityFrom, alpha)
-            newPackages = takeLeavePackages(ant)
+            newPackages = antTakeLeavePackages(ant)
             ant.append((cityFrom, nextCity, newPackages))
         
     pheromones.updatePheromoneMap(pheromoneMap, ants, ro)
@@ -41,7 +38,9 @@ for _ in range(iterations):
 sortingFun = lambda trace : objectiveFunction(Configuration.cities, Configuration.packages, trace)
 ants.sort(key=sortingFun, reverse=True)
 print("BEST")
-print(ants[0])
+for p in ants[0]:
+    print(p)
+print("len:", len(ants[0]))
 print(sortingFun(ants[0]))
 
     

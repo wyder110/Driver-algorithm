@@ -1,5 +1,6 @@
-from ants.objectiveFunction import *
+from common.objectiveFunction import *
 from confLoader import *
+
 
 def createPheromonesMap(cities):
     pheromones = {}
@@ -10,15 +11,8 @@ def createPheromonesMap(cities):
 
     return pheromones
 
-def pheromonesEvaporating(pheromones, ro):
-    for city in pheromones:
-        for connection in pheromones[city]:
-            pheromones[city][connection] *= (1 - ro)
 
 def updatePheromoneMap(pheromones, ants, ro):
-    Q = 1
-    L = 1
-
     # evaporating
     for i in pheromones:
         for j in pheromones[i]:
@@ -26,21 +20,22 @@ def updatePheromoneMap(pheromones, ants, ro):
     
     for ant in ants:
         if len(ant) < Configuration.parameters["maxSteps"]:
-            cityFrom = ant[-1][0]
-            cityTo = ant[-1][1]
-            obj = objectiveFunction(Configuration.cities, Configuration.packages, ant)
-            if obj > 0: 
-                pheromones[cityTo][cityFrom] += obj
+            lastMove = ant[len(ant)-2:len(ant)]
+            obj = objectiveFunction(Configuration.cities, Configuration.packages, lastMove)
+            # obj = objectiveFunction(Configuration.cities, Configuration.packages, ant)
+            if obj > 0:
+                cityFrom = ant[-1][0]
+                cityTo = ant[-1][1]
                 pheromones[cityFrom][cityTo] += obj
+                # pheromones[cityTo][cityFrom] += obj
 
-    # for i in pheromones:
-    #     for j in pheromones[i]:
-    #         # evaporating
-    #         pheromones[i][j] *= (1 - ro)
-    #         # delta sum
-    #         for k in ants:
-    #             if len(k) < Configuration.parameters["maxSteps"]:
-    #                 if (k[-1][0] == i and k[-1][1] == j) or (k[-1][1] == i and k[-1][0] == j):
-    #                     obj = objectiveFunction(cities, packages, k)
-    #                     pheromones[i][j] += obj
-                
+
+def printPheromones(pheromones):
+    for i in pheromones:
+        print((i + ": ").ljust(12), end="")
+        keys = list(pheromones[i].keys())
+        values = list(pheromones[i].values())
+        for i in range(len(pheromones[i])):
+            print((keys[i] + ": {:.3f} ".format(values[i])).ljust(23), end="")
+        print()
+    print()

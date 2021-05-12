@@ -1,7 +1,8 @@
 import random
 from copy import copy
+
 from confLoader import Configuration as Configuration
-# import confLoader
+
 
 def copyFirstPart(listFrom, cross, crossingPlace, takenPackeges):
     '''kopiuje pierwszą część treca'''
@@ -40,7 +41,7 @@ def copySecondPart(listTo, cross, crossingPlace, takenPackeges):
         tup = (listTo[j][0], listTo[j][1], newTrailer)
         cross.append(tup)
 
-        chceckIfTraceIsCorrect(cross)
+        # checkIfTraceIsCorrect(cross)
 
 
 
@@ -67,16 +68,5 @@ def crossover(cities, l1, l2):
             copySecondPart(listTo, cross, i, taken)
             return cross
             
-
-def chceckIfTraceIsCorrect(trace):
-    taken = set()
-    for i in range(1, len(trace)):
-        takenInThisTurn = set(trace[i][2]) - set(trace[i-1][2])
-        for package in takenInThisTurn:
-            if package in taken:
-                print("BŁĄD NUMER PACZKI: ",package," W TRACE: ", trace, "\n")
-                return False
-            taken.add(package)
-    return True
 
         

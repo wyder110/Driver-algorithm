@@ -1,5 +1,4 @@
 import random
-from copy import copy
 from confLoader import Configuration
 
 def nextStep(pheromoneMap, cityFrom, alpha):
@@ -10,7 +9,6 @@ def nextStep(pheromoneMap, cityFrom, alpha):
     for city in pheromoneMap[cityFrom]:
         divisor += (pheromoneMap[cityFrom][city] ** alpha).real
 
-    
     for city in pheromoneMap[cityFrom]:
         if divisor != 0:
             probabilities[city] = (pheromoneMap[cityFrom][city] ** alpha).real / divisor
@@ -21,34 +19,29 @@ def nextStep(pheromoneMap, cityFrom, alpha):
     # print("probs", list(probabilities.values()))
     return random.choices(list(pheromoneMap[cityFrom]), weights=list(probabilities.values()))[0]
 
-    # allPheromones = []
-    # for trace in pheromoneMap[cityFrom]:
-    #     allPheromones.append(pheromoneMap[cityFrom][trace])
 
-    # return random.choices(list(pheromoneMap[cityFrom]), weights=allPheromones)[0]
-
-
-def takeLeavePackages(ant):
-    
-    packagesAlreadyTaken = set()
-    for _,_,packages in ant:
-        packagesAlreadyTaken = packagesAlreadyTaken.union(set(packages))
-
-    # print("ant", ant)
-    # print("packagesAlreadyTaken", packagesAlreadyTaken)
+def antTakeLeavePackages(ant):
     currentCity = ant[-1][1]
+    trailer = ant[-1][2]
+
+    taken = set()
+    for _, _, packages in ant:
+        taken = taken.union(set(packages))
+    
+    return takeLeavePackages(trailer, taken, currentCity)
+    
+
+def takeLeavePackages(trailer, taken, currentCity):
     packages = Configuration.packages[currentCity]
 
-    newPackages = leavePackages(ant[-1][2], currentCity)
+    newPackages = leavePackages(trailer, currentCity)
     
-
     for package in packages:
-        if package['id'] not in packagesAlreadyTaken:
-            if canAntTakePackage(ant, package['id']):
+        if package['id'] not in taken:
+            if canTakePackage(trailer, package['id']):
                 newPackages.append(package['id'])
 
     return newPackages
-    
     
 def leavePackages(packages, currentCity):
     newPackages = []
@@ -59,10 +52,9 @@ def leavePackages(packages, currentCity):
     return newPackages
 
 
-def canAntTakePackage(ant, packageToTake):
-    currentPackages = ant[-1][2]
+def canTakePackage(trailer, packageToTake):
     currentWeigth = 0
-    for packageId in currentPackages:
+    for packageId in trailer:
         currentWeigth += Configuration.packagesId[packageId]["weigth"]
 
     currentWeigth += Configuration.packagesId[packageToTake]["weigth"]

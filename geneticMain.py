@@ -1,11 +1,11 @@
+from copy import copy
+
 import confLoader
-from genetic.startPopGen import generateFirstPopulation
-from genetic.objectiveFunction import objectiveFunction
 import genetic.crossover as crossover
 import genetic.mutation as mutation
-from copy import copy
-from genetic.objectiveFunction import *
+from common.objectiveFunction import *
 from genetic.selection import *
+from genetic.startPopGen import generateFirstPopulation
 
 cities, packages, parameters = confLoader.confLoader("config/conf3.json")
 

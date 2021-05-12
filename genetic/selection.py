@@ -1,6 +1,8 @@
-from genetic.objectiveFunction import *
-from confLoader import Configuration
 import random
+
+from common.objectiveFunction import *
+from confLoader import Configuration
+
 
 sortingFun = lambda trace : objectiveFunction(Configuration.cities, Configuration.packages, trace)
 
