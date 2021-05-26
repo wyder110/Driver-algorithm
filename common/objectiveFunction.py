@@ -13,7 +13,9 @@ def objectiveFunction(cities, packages, trace):
             profit += p["price"]
 
         # fuel cost
-        distance = cities[current_city][next_city]
+        distance = 0
+        if current_city != next_city:
+            distance = cities[current_city][next_city]
         profit -= fuel(distance)
     
     return profit
