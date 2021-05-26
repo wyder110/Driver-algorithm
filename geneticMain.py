@@ -9,6 +9,7 @@ from genetic.selection import *
 from genetic.startPopGen import generateFirstPopulation
 import time
 
+
 cities, packages, parameters = confLoader.confLoader("config/conf3.json")
 
 population_count = 100
@@ -26,6 +27,7 @@ bad_removal_count = 0
 for number_test in range(number_of_tests):
     print(number_test)
     pop = generateFirstPopulation(cities, packages, parameters, population_count)
+    
     for _ in range(number_of_iterations):
         pop = ranking_selection(pop, int(population_count*selected_percent))
         for i in range(len(pop)):

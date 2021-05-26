@@ -69,4 +69,19 @@ def crossover(cities, l1, l2):
             return cross
             
 
-        
+def checkIfTraceIsCorrect(trace):
+    taken = set()
+    left = set()
+    
+    for i in range(len(trace)):
+        if i != 0:
+            
+            takenNow = set(trace[i][2]) - set(trace[i-1][2])
+            if(len(taken.intersection(takenNow)) > 0):
+                print("Paczki ",taken.intersection(takenNow)," wzięte są dwa razy w ",trace[2])
+
+        taken = taken.union(set(trace[i][2]))
+
+
+
+# checkIfTraceIsCorrect([(1,1,[1,2]),(1,1,[2]),(1,1,[1,2]),(1,1,[1,2])])

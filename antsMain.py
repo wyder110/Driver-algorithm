@@ -3,6 +3,7 @@ from ants.ants import *
 from ants.pheromones import printPheromones
 from common.objectiveFunction import *
 from confLoader import *
+from common.test import runAllTraceTest 
 
 cities, packages, parameters = confLoader("config/conf3.json")
 startingCity = Configuration.parameters["start"]
@@ -26,6 +27,7 @@ for _ in range(iterations):
     printPheromones(pheromoneMap)
 
     for ant in ants:
+        runAllTraceTest(ant)
         if len(ant) < Configuration.parameters["maxSteps"]:
             cityFrom = ant[-1][1]
             nextCity = nextStep(pheromoneMap, cityFrom, alpha)
