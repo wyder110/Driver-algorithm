@@ -22,6 +22,7 @@ max_sum = sum([x['price'] for x in Configuration.packagesId.values()])
 best_pop = []
 max_cash = 0
 # start = time.time()
+bad_removal_count = 0
 for number_test in range(number_of_tests):
     print(number_test)
     pop = generateFirstPopulation(cities, packages, parameters, population_count)
@@ -30,10 +31,12 @@ for number_test in range(number_of_tests):
         for i in range(len(pop)):
             # trace_copy = copy(pop[i])
             # mutation.replacement(trace_copy)
-            # pop.append(trace_copy)
+            # if not checkBadRemoval(trace_copy):
+            #     pop.append(trace_copy)
             for j in range(i):
                 cross = crossover.crossover(cities, pop[i], pop[j])
-                pop.append(cross)
+                if not checkBadRemoval(cross):
+                    pop.append(cross)
                 # pop.append(generateFirstPopulation(cities, packages, parameters, 1)[0])
 
     pop.sort(key=sortingFun, reverse=True)
@@ -51,7 +54,8 @@ for number_test in range(number_of_tests):
         print(current_cash)
         print("difference", max_sum-(current_cash+cost))
     if checkBadRemoval(pop[0]):    
-        printObjFuncStepByStep(cities, packages, pop[0], max_sum)
+        # printObjFuncStepByStep(cities, packages, pop[0], max_sum)
+        bad_removal_count += 1
     # if not checkCitiesTrace(pop[0]) or not checkTakenPackages(pop[0]):
     #     print("WRONG TRACE")
     #     for p in pop[0]:
@@ -60,8 +64,8 @@ for number_test in range(number_of_tests):
     if current_cash > max_cash:
         max_cash = current_cash
         best_pop = pop[0]
-        printObjFuncStepByStep(cities, packages, pop[0], max_sum)
-
+        # printObjFuncStepByStep(cities, packages, pop[0], max_sum)
+print("bad removal count: ", bad_removal_count)
 # stoptime = time.time()
 # print("Elapsed time: ", stoptime-start)
 for p in best_pop:
