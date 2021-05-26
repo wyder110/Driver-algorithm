@@ -62,6 +62,20 @@ def checkBadRemoval(trace):
         should_remove_in_current_city = [x for x in trailer_old if Configuration.packagesId[x]['to'] == current_city]
         trailer_old = trailer
         if set(should_remove_in_current_city) != set(trailer_diff):
+            print("should_remove_in_current_city ",should_remove_in_current_city,"trailer_diff",trailer_diff)
             return True
     
     return False
+
+def runAllTraceTest(trace):
+    if checkBadRemoval(trace):
+        print("checkBadRemoval ", trace)
+        print("checkBadRemoval ", trace)
+
+    if not checkCitiesTrace(trace):
+        print("checkCitiesTrace ", trace)
+        print("checkCitiesTrace ", trace)
+
+    if not checkTakenPackages(trace):
+        print("checkTakenPackages ", trace)
+        print("checkTakenPackages ", trace)
