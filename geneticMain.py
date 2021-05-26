@@ -26,7 +26,7 @@ max_cash = 0
 for number_test in range(number_of_tests):
     print(number_test)
     pop = generateFirstPopulation(cities, packages, parameters, population_count)
-
+    
     for _ in range(number_of_iterations):
         pop = ranking_selection(pop, int(population_count*selected_percent))
         for i in range(len(pop)):
@@ -34,11 +34,7 @@ for number_test in range(number_of_tests):
             mutation.replacement(trace_copy)
             pop.append(trace_copy)
             for j in range(i):
-                temp1 = pop[i]
-                temp2 = pop[j]
-                cross = crossover.crossover(cities, temp1, temp2)
-                crossover.checkIfTraceIsCorrect(cross)
-                    
+                cross = crossover.crossover(cities, pop[i], pop[j])                    
                 pop.append(cross)
                 # pop.append(generateFirstPopulation(cities, packages, parameters, 1)[0])
 

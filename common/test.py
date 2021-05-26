@@ -70,12 +70,9 @@ def checkBadRemoval(trace):
 def runAllTraceTest(trace):
     if checkBadRemoval(trace):
         print("checkBadRemoval ", trace)
-        print("checkBadRemoval ", trace)
 
     if not checkCitiesTrace(trace):
         print("checkCitiesTrace ", trace)
-        print("checkCitiesTrace ", trace)
 
     if not checkTakenPackages(trace):
-        print("checkTakenPackages ", trace)
         print("checkTakenPackages ", trace)

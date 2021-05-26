@@ -25,7 +25,7 @@ def generateTrace(cities, packages, parameters, startCity, maxSteps, maxCarry):
 
         if currentCity in packages:
             freePackages = [x for x in list(packages.get(currentCity)) if x["id"] not in taken]
-            choosePackages(trailer, freePackages, maxCarry, currentCity)
+            choosePackages(trailer, freePackages, maxCarry)
 
         adjacentCities = list(cities.get(currentCity).keys())
         nextCity = chooseNeighbour(adjacentCities)
@@ -46,7 +46,7 @@ def deliverPackages(trailer, currentCity):
     return newTrailer
 
 
-def choosePackages(trailer, packagesToTake, maxCarry, currentCity):
+def choosePackages(trailer, packagesToTake, maxCarry):
     currentCarry = sum([x["weigth"] for x in trailer])
     while len(packagesToTake) > 0:
         package = random.choice(packagesToTake)
