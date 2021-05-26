@@ -1,17 +1,39 @@
 import random
+
+from common.objectiveFunction import *
 from confLoader import Configuration
 
-def nextStep(pheromoneMap, cityFrom, alpha):
-    # TODO add eta and beta
-    probabilities = dict()
 
+def newAnt(startingCity, pheromoneMap, alpha, beta):
+    nextCity = nextStep(pheromoneMap, startingCity, [], alpha, beta)
+    trailer = takeLeavePackages([], [], startingCity)
+    return [(startingCity, nextCity, trailer)]
+
+
+def nextStep(pheromoneMap, cityFrom, trailer, alpha, beta):
+    '''
+    it calculates probabilities of going to next cities 
+    and then chooses random city according to these probabilities
+    '''
+
+    values = dict()
+    probabilities = dict()
+    
     divisor = 0
     for city in pheromoneMap[cityFrom]:
-        divisor += (pheromoneMap[cityFrom][city] ** alpha).real
+        tau = pheromoneMap[cityFrom][city]
+
+        new_trailer = leavePackages(trailer, city)
+        move = [(cityFrom, city, trailer), (city, city, new_trailer)]
+        eta = objectiveFunction(Configuration.cities, Configuration.packages, move)
+
+        value = (tau ** alpha).real * (eta ** beta).real
+        values[city] = value
+        divisor += value
 
     for city in pheromoneMap[cityFrom]:
         if divisor != 0:
-            probabilities[city] = (pheromoneMap[cityFrom][city] ** alpha).real / divisor
+            probabilities[city] = values[city] / divisor
         else:
             probabilities[city] = 1
     
