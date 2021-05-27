@@ -1,7 +1,7 @@
 import pandas
-import tester
+import genetic.genetic_tester as genetic_tester
 
-df = pandas.read_csv('genetic_input.csv')
+df = pandas.read_csv('genetic/genetic_input.csv')
 number_of_tests = df['id'].max()
 print(number_of_tests)
 df_out = pandas.DataFrame(columns=['id', 'max_sum', 'max_cash', 'elapsed_time'])
@@ -11,7 +11,7 @@ for test in range(number_of_tests):
     current_df = df[df['id'] == current_id]
     for row in range(len(current_df)):
         current_row = df.iloc[row]
-        max_sum, max_cash, elapsed_time = tester.genetic_driver(
+        max_sum, max_cash, elapsed_time = genetic_tester.genetic_driver(
             config_path="config/conf3.json", 
             number_of_tests=current_row.loc['number_of_tests'], 
             number_of_iterations=current_row.loc['number_of_iterations'], 
@@ -23,4 +23,4 @@ for test in range(number_of_tests):
             cross_p=current_row.loc['cross_p'])
         df_out = df_out.append(pandas.DataFrame({'id': [current_id], 'max_sum': [max_sum], 'max_cash': [max_cash], 'elapsed_time':[elapsed_time]}), ignore_index=True)
 
-df_out.to_csv("genetic_output.csv", index=False)
+df_out.to_csv("genetic/genetic_output.csv", index=False)
