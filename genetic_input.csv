@@ -1,0 +1,6 @@
+id,changing_params,number_of_tests,number_of_iterations,population_count,selection_type,selected_percent,mutation_type,mutation_p,cross_p
+1,population_count,100,100,100,1,0.2,1,1,0 
+1,population_count,100,100,200,1,0.2,1,1,0 
+1,population_count,100,100,300,1,0.2,1,1,0 
+1,population_count,100,100,400,1,0.2,1,1,0 
+1,population_count,100,100,500,1,0.2,1,1,0 
