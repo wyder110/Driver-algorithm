@@ -1,4 +1,4 @@
-from confLoader import Configuration as Configuration
+from config.confLoader import Configuration as Configuration
 import random
 from copy import copy
 

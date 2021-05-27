@@ -1,7 +1,7 @@
 import random
 from copy import copy
 
-from confLoader import Configuration as Configuration
+from config.confLoader import Configuration as Configuration
 
 
 def copyFirstPart(listFrom, cross, crossingPlace, takenPackeges):

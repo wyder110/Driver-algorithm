@@ -1,5 +1,5 @@
 from copy import copy
-import confLoader
+import config.confLoader as confLoader
 import genetic.crossover as crossover
 import genetic.mutation as mutation
 from common.objectiveFunction import *

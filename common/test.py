@@ -1,5 +1,5 @@
 from functools import reduce
-from confLoader import Configuration as Configuration
+from config.confLoader import Configuration as Configuration
 from common.objectiveFunction import *
 
 def checkTakenPackages(trace):

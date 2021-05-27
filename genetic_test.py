@@ -1,11 +1,15 @@
 import pandas
-import genetic.genetic_tester as genetic_tester
+import genetic.test.genetic_tester as genetic_tester
 
-df = pandas.read_csv('genetic/genetic_input.csv')
+input_file = 'genetic/test/genetic_input.csv'
+output_file = "genetic/test/genetic_output.csv"
+
+df = pandas.read_csv(input_file)
+
 number_of_tests = df['id'].max()
-print(number_of_tests)
+
 df_out = pandas.DataFrame(columns=['id', 'max_sum', 'max_cash', 'elapsed_time'])
-print(df_out)
+
 for test in range(number_of_tests):
     current_id = test+1
     current_df = df[df['id'] == current_id]
@@ -23,4 +27,4 @@ for test in range(number_of_tests):
             cross_p=current_row.loc['cross_p'])
         df_out = df_out.append(pandas.DataFrame({'id': [current_id], 'max_sum': [max_sum], 'max_cash': [max_cash], 'elapsed_time':[elapsed_time]}), ignore_index=True)
 
-df_out.to_csv("genetic/genetic_output.csv", index=False)
+df_out.to_csv(output_file, index=False)

@@ -1,7 +1,7 @@
 import random
 
 from common.objectiveFunction import *
-from confLoader import Configuration
+from config.confLoader import Configuration
 
 
 sortingFun = lambda trace : objectiveFunction(Configuration.cities, Configuration.packages, trace)

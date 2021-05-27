@@ -2,7 +2,7 @@ import ants.pheromones as pheromones
 from ants.ants import *
 from ants.pheromones import printPheromones
 from common.objectiveFunction import *
-from confLoader import *
+from config.confLoader import *
 from common.test import runAllTraceTest 
 
 cities, packages, parameters = confLoader("config/conf3.json")

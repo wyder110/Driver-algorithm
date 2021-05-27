@@ -1,7 +1,7 @@
 import random
 
 from common.objectiveFunction import *
-from confLoader import Configuration
+from config.confLoader import Configuration
 
 
 def newAnt(startingCity, pheromoneMap, alpha, beta):
