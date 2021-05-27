@@ -21,6 +21,6 @@ for test in range(number_of_tests):
             mutation_type=current_row.loc['mutation_type'], 
             mutation_p=current_row.loc['mutation_p'], 
             cross_p=current_row.loc['cross_p'])
-        df_out = df_out.append(pandas.DataFrame({'id': [current_id], 'max_sum': [max_sum], 'max_cash': [max_cash], 'elapsed_time':[elapsed_time]}))
+        df_out = df_out.append(pandas.DataFrame({'id': [current_id], 'max_sum': [max_sum], 'max_cash': [max_cash], 'elapsed_time':[elapsed_time]}), ignore_index=True)
 
-print(df_out)
+df_out.to_csv("genetic_output.csv", index=False)
