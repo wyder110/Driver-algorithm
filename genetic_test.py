@@ -26,5 +26,5 @@ for test in range(number_of_tests):
             mutation_p=current_row.loc['mutation_p'], 
             cross_p=current_row.loc['cross_p'])
         df_out = df_out.append(pandas.DataFrame({'id': [current_id], 'max_sum': [max_sum], 'max_cash': [max_cash], 'elapsed_time':[elapsed_time]}), ignore_index=True)
+    df_out.to_csv(output_file, index=False)
 
-df_out.to_csv(output_file, index=False)
