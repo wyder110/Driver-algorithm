@@ -1,0 +1,6 @@
+id,changing_params,number_of_tests,number_of_iterations,starting_population,alpha,beta,ro
+1,starting_population,100,100,10,0.8,0.5,0.01
+1,starting_population,100,100,20,0.8,0.5,0.01
+1,starting_population,100,100,30,0.8,0.5,0.01
+1,starting_population,100,100,40,0.8,0.5,0.01
+1,starting_population,100,100,50,0.8,0.5,0.01
