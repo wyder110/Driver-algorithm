@@ -1,8 +1,7 @@
 import random
-
+import warnings
 from common.objectiveFunction import *
 from config.confLoader import Configuration
-
 
 def newAnt(startingCity, pheromoneMap, alpha, beta):
     nextCity = nextStep(pheromoneMap, startingCity, [], alpha, beta)
@@ -26,7 +25,7 @@ def nextStep(pheromoneMap, cityFrom, trailer, alpha, beta):
         new_trailer = leavePackages(trailer, city)
         move = [(cityFrom, city, trailer), (city, city, new_trailer)]
         eta = objectiveFunction(Configuration.cities, Configuration.packages, move)
-
+        
         value = (tau ** alpha).real * (eta ** beta).real
         values[city] = value
         divisor += value
@@ -37,8 +36,6 @@ def nextStep(pheromoneMap, cityFrom, trailer, alpha, beta):
         else:
             probabilities[city] = 1
     
-    # print("cities", list(pheromoneMap[cityFrom]))
-    # print("probs", list(probabilities.values()))
     return random.choices(list(pheromoneMap[cityFrom]), weights=list(probabilities.values()))[0]
 
 

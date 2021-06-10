@@ -1,10 +1,13 @@
 
 import time
-from ants.pheromones import createPheromonesMap, updatePheromoneMap
-from ants.ants import antTakeLeavePackages, newAnt, nextStep
+import ants.pheromones as pheromones
+from ants.ants import *
+from ants.pheromones import printPheromones
 from common.objectiveFunction import *
 from config.confLoader import *
 
+
+def sortingFun(trace): return objectiveFunction(Configuration.cities, Configuration.packages, trace)
 
 def ants_driver(config_path="config/conf3.json", number_of_tests=100, number_of_iterations=100, starting_population=10, alpha=0.8, beta=0.5, ro=0.01):
     print_start_info(config_path, number_of_tests, number_of_iterations, starting_population, alpha, beta, ro)
@@ -21,7 +24,7 @@ def ants_driver(config_path="config/conf3.json", number_of_tests=100, number_of_
     startTime = time.time()
 
     for _ in range(number_of_tests):
-        pheromoneMap = createPheromonesMap(cities)
+        pheromoneMap = pheromones.createPheromonesMap(cities)
         ants = []
 
         for _ in range(starting_population):
@@ -34,15 +37,12 @@ def ants_driver(config_path="config/conf3.json", number_of_tests=100, number_of_
                 if len(ant) < max_steps:
                     cityFrom = ant[-1][1]
                     trailer = ant[-1][2]
-                    nextCity = nextStep(
-                        pheromoneMap, cityFrom, trailer, alpha, beta)
+                    nextCity = nextStep(pheromoneMap, cityFrom, trailer, alpha, beta)
                     newPackages = antTakeLeavePackages(ant)
                     ant.append((cityFrom, nextCity, newPackages))
 
-            updatePheromoneMap(pheromoneMap, ants, ro)
+            pheromones.updatePheromoneMap(pheromoneMap, ants, ro)
 
-        def sortingFun(trace): return objectiveFunction(
-            Configuration.cities, Configuration.packages, trace)
         ants.sort(key=sortingFun, reverse=True)
         best_ants = ants[0]
         current_best_cash = sortingFun(best_ants)
