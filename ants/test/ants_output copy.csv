@@ -1,4 +1,4 @@
-id,max_sum,max_cash,elapsed_time,max_ants_count
+id,max_sum,max_cash,elapsed_time,trace_len
 1,39066,29994,16.4231276512146,17
 1,39066,29148,17.5180082321167,17
 1,39066,29354,16.4710111618042,17

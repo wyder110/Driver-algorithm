@@ -19,7 +19,7 @@ def ants_driver(config_path="config/conf3.json", number_of_tests=100, number_of_
     startingCity = Configuration.parameters["start"]
 
     max_cash = 0
-    max_ants_count = 0
+    trace_len = 0
 
     startTime = time.time()
 
@@ -48,22 +48,22 @@ def ants_driver(config_path="config/conf3.json", number_of_tests=100, number_of_
         current_best_cash = sortingFun(best_ants)
         if current_best_cash > max_cash:
             max_cash = current_best_cash
-            max_ants_count = len(best_ants)
+            trace_len = len(best_ants)
 
     stoptime = time.time()
     elapsed_time = stoptime - startTime
 
-    print_end_info(max_sum, max_cash, elapsed_time, max_ants_count)
+    print_end_info(max_sum, max_cash, elapsed_time, trace_len)
 
-    return max_sum, max_cash, elapsed_time, max_ants_count
+    return max_sum, max_cash, elapsed_time, trace_len
 
 
-def print_end_info(max_sum, max_cash, elapsed_time, max_ants_count):
+def print_end_info(max_sum, max_cash, elapsed_time, trace_len):
     print("test ended with results: ")
     print("\t max_sum:", max_sum)
     print("\t max_cash:", max_cash)
     print("\t elapsed_time:", elapsed_time)
-    print("\t max_ants_count:", max_ants_count)
+    print("\t trace_len:", trace_len)
     print("- - - - - - - - - - - -")
 
 
