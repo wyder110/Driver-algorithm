@@ -1,7 +1,7 @@
 import pandas
 import ants.test.ants_tester as ants_tester
 
-input_file = 'ants/test/ants_input.csv'
+input_file = "ants/test/ants_input.csv"
 output_file = "ants/test/ants_output.csv"
 
 df = pandas.read_csv(input_file)

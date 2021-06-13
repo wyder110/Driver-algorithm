@@ -1,10 +1,10 @@
-
 import time
+
 import ants.pheromones as pheromones
 from ants.ants import *
 from ants.pheromones import printPheromones
-from common.objectiveFunction import *
-from config.confLoader import *
+from common.objective_function import *
+from config.conf_loader import *
 
 
 def sortingFun(trace): return objectiveFunction(Configuration.cities, Configuration.packages, trace)

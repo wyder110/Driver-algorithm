@@ -1,6 +1,7 @@
-from config.confLoader import Configuration as Configuration
 import random
 from copy import copy
+
+from config.conf_loader import Configuration as Configuration
 
 
 def can_be_deleted(trace, index):

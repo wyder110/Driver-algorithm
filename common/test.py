@@ -1,6 +1,6 @@
-from functools import reduce
-from config.confLoader import Configuration as Configuration
-from common.objectiveFunction import *
+from config.conf_loader import Configuration as Configuration
+from common.objective_function import *
+
 
 def checkTakenPackages(trace):
     taken = set()

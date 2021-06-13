@@ -1,7 +1,8 @@
 import random
-import warnings
-from common.objectiveFunction import *
-from config.confLoader import Configuration
+
+from common.objective_function import *
+from config.conf_loader import Configuration
+
 
 def newAnt(startingCity, pheromoneMap, alpha, beta):
     nextCity = nextStep(pheromoneMap, startingCity, [], alpha, beta)

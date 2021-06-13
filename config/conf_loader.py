@@ -1,11 +1,11 @@
 import json
 
+
 class Configuration:
     cities = {}
     packages = {}
     packagesId = {}
     parameters = {}
-
 
 
 def confLoader(path):
@@ -16,8 +16,6 @@ def confLoader(path):
     with open(path, encoding="UTF-8") as json_file:
         data = json.load(json_file)
         parameters = data["parameters"]
-
-        
 
         for city in data['cities']:
             cities[city["name"]] = {}
@@ -40,7 +38,6 @@ def confLoader(path):
     Configuration.packagesId = packagesId
     Configuration.parameters = parameters
 
-    
     # print(cities)
     # print(packages)
     # print(packages)

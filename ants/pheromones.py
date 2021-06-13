@@ -1,5 +1,5 @@
-from common.objectiveFunction import *
-from config.confLoader import *
+from common.objective_function import *
+from config.conf_loader import *
 
 
 def createPheromonesMap(cities):

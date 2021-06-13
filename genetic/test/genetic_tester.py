@@ -1,11 +1,11 @@
 from copy import copy
-import config.confLoader as confLoader
+import config.conf_loader as confLoader
 import genetic.crossover as crossover
 import genetic.mutation as mutation
-from common.objectiveFunction import *
+from common.objective_function import *
 from common.test import *
 from genetic.selection import *
-from genetic.startPopGen import generateFirstPopulation
+from genetic.start_pop_gen import generateFirstPopulation
 import time
 import random
 
